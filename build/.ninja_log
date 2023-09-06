@@ -1,0 +1,6 @@
+# ninja log v5
+0	215	1691900992520712768	src/CMakeFiles/lmdb.dir/mdb.c.o	242575248d626a67
+1	95	1691901065626358903	/home/spdk/p4510/zhengyang/data/lmdb/lib/liblmdb.a	c87c377116c66f94
+0	75	1691900992380717484	CMakeFiles/lmdb_test.dir/main.c.o	1cf5d895b5c795bf
+1	114	1691901077577993705	/home/spdk/p4510/zhengyang/data/lmdb/bin/lmdb_test	46b4e00d5dd732e6
+1	81	1691900992384717349	src/CMakeFiles/lmdb.dir/midl.c.o	cb3357b610dd5237

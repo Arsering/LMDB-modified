@@ -1,0 +1,6 @@
+/home/spdk/p4510/zhengyang/data/lmdb/build/CMakeFiles/lmdb_test.dir
+/home/spdk/p4510/zhengyang/data/lmdb/build/CMakeFiles/edit_cache.dir
+/home/spdk/p4510/zhengyang/data/lmdb/build/CMakeFiles/rebuild_cache.dir
+/home/spdk/p4510/zhengyang/data/lmdb/build/src/CMakeFiles/lmdb.dir
+/home/spdk/p4510/zhengyang/data/lmdb/build/src/CMakeFiles/edit_cache.dir
+/home/spdk/p4510/zhengyang/data/lmdb/build/src/CMakeFiles/rebuild_cache.dir
