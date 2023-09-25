@@ -57,10 +57,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/spdk/p4510/zhengyang/data/lmdb
+CMAKE_SOURCE_DIR = /home/spdk/p4510/zhengyang/data/lmdb_test
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/spdk/p4510/zhengyang/data/lmdb/build
+CMAKE_BINARY_DIR = /home/spdk/p4510/zhengyang/data/lmdb_test/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/spdk/p4510/zhengyang/data/lmdb/build/CMakeFiles /home/spdk/p4510/zhengyang/data/lmdb/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/spdk/p4510/zhengyang/data/lmdb_test/build/CMakeFiles /home/spdk/p4510/zhengyang/data/lmdb_test/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/spdk/p4510/zhengyang/data/lmdb/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/spdk/p4510/zhengyang/data/lmdb_test/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -142,29 +142,29 @@ lmdb/fast:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/build
 .PHONY : lmdb/fast
 
-main.o: main.c.o
+main.o: main.cpp.o
 .PHONY : main.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lmdb_test.dir/build.make CMakeFiles/lmdb_test.dir/main.c.o
-.PHONY : main.c.o
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lmdb_test.dir/build.make CMakeFiles/lmdb_test.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-main.i: main.c.i
+main.i: main.cpp.i
 .PHONY : main.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lmdb_test.dir/build.make CMakeFiles/lmdb_test.dir/main.c.i
-.PHONY : main.c.i
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lmdb_test.dir/build.make CMakeFiles/lmdb_test.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-main.s: main.c.s
+main.s: main.cpp.s
 .PHONY : main.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lmdb_test.dir/build.make CMakeFiles/lmdb_test.dir/main.c.s
-.PHONY : main.c.s
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lmdb_test.dir/build.make CMakeFiles/lmdb_test.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:

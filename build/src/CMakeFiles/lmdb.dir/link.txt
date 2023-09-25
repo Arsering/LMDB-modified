@@ -1,2 +1,2 @@
-/usr/bin/llvm-ar qc /home/spdk/p4510/zhengyang/data/lmdb/lib/liblmdb.a CMakeFiles/lmdb.dir/mdb.c.o CMakeFiles/lmdb.dir/midl.c.o
-/usr/bin/llvm-ranlib /home/spdk/p4510/zhengyang/data/lmdb/lib/liblmdb.a
+/usr/bin/ar qc /home/spdk/p4510/zhengyang/data/lmdb_test/lib/liblmdb.a CMakeFiles/lmdb.dir/cache_yz.cpp.o CMakeFiles/lmdb.dir/logger.c.o CMakeFiles/lmdb.dir/mdb.c.o CMakeFiles/lmdb.dir/midl.c.o
+/usr/bin/ranlib /home/spdk/p4510/zhengyang/data/lmdb_test/lib/liblmdb.a

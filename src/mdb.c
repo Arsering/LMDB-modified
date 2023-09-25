@@ -250,6 +250,8 @@ union semun
 
 #include "lmdb.h"
 #include "midl.h"
+// #include "cache_yz.h"
+#include "logger.h"
 
 #if (BYTE_ORDER == LITTLE_ENDIAN) == (BYTE_ORDER == BIG_ENDIAN)
 #error "Unknown or unsupported endianness (BYTE_ORDER)"
@@ -3371,7 +3373,7 @@ static int mdb_txn_renew0(MDB_txn *txn)
     }
 
     /* Copy the DB info and flags 只有Free_DB 和 MAIN_DB*/
-    memcpy(txn->mt_dbs, meta->mm_dbs, CORE_DBS * sizeof(MDB_db));
+    memcpy(txn->mt_dbs, meta->mm_dbs, CORE_DBS * sizeof(MDB_db)); // FIXME: read data.mdb
 
     /* Moved to here to avoid a data race in read TXNs */
     txn->mt_next_pgno = meta->mm_last_pg + 1;
@@ -3433,6 +3435,7 @@ int mdb_txn_begin(MDB_env *env, MDB_txn *parent, unsigned int flags, MDB_txn **r
     int rc, size, tsize;
 
     flags &= MDB_TXN_BEGIN_FLAGS;
+
     flags |= env->me_flags & MDB_WRITEMAP;
 
     if (env->me_flags & MDB_RDONLY & ~flags) /* write txn in RDONLY env */
@@ -3484,7 +3487,7 @@ int mdb_txn_begin(MDB_env *env, MDB_txn *parent, unsigned int flags, MDB_txn **r
 #endif
     /* 此处初始化 txn 中的各个指针 */
     txn->mt_dbxs = env->me_dbxs;                                    /* static */
-    txn->mt_dbs = (MDB_db *)((char *)txn + tsize);                  // 所有 db的 MDB_DB 结构体放在 MDB_txn 结构体之后
+    txn->mt_dbs = (MDB_db *)((char *)txn + tsize);                  // 所有 db的 MDB_DB 结构体（不是指针，在初始化的时候会被复制过来）放在 MDB_txn 结构体之后
     txn->mt_dbflags = (unsigned char *)txn + size - env->me_maxdbs; // 所有db 的 dbflags 都放在 所有 db 之后
     txn->mt_flags = flags;
     txn->mt_env = env;
@@ -4454,6 +4457,8 @@ fail:
  *
  * 本函数即是读取两个header中的一个（根据 prev 的值确定读哪一个）
  *
+ * 不会通过MMAP访问文件，但是可以优化
+ *
  * @param[in] env the environment handle
  * @param[in] prev whether to read the backup meta page
  * @param[out] meta address of where to store the meta information
@@ -4485,7 +4490,7 @@ static int ESECT mdb_env_read_header(MDB_env *env, int prev, MDB_meta *meta)
         if (rc == -1 && ErrCode() == ERROR_HANDLE_EOF)
             rc = 0;
 #else
-        rc = pread(env->me_fd, &pbuf, Size, off);
+        rc = pread(env->me_fd, &pbuf, Size, off); // FIXME: pread 从 data.mdb文件中读取 metadata
 #endif
         if (rc != Size)
         {
@@ -4525,7 +4530,7 @@ static int ESECT mdb_env_read_header(MDB_env *env, int prev, MDB_meta *meta)
 }
 
 /** Fill in most of the zeroed #MDB_meta for an empty database environment
- * 设置初始化 data.mdb Meta data处存储的数据（即meta，此结构体会随后被放到data.mdb文件的开头）
+ * 初始化MDB_meta 结构体，设置初始化 data.mdb Meta data处存储的数据（即meta，此结构体会随后被放到data.mdb文件的开头）
  */
 static void ESECT mdb_env_init_meta0(MDB_env *env, MDB_meta *meta)
 {
@@ -4543,7 +4548,7 @@ static void ESECT mdb_env_init_meta0(MDB_env *env, MDB_meta *meta)
 
 /** Write the environment parameters of a freshly created DB environment.
  *
- * 初始化 data.mdb 文件的头两个 page, 这两个page一开始存储同一份 Meta data
+ * 初始化 data.mdb 文件的头两个 page, 这两个page一开始存储同一份 Meta data （通过 pwrite）
  * @param[in] env the environment handle
  * @param[in] meta the #MDB_meta to write
  * @return 0 on success, non-zero on failure.
@@ -4751,7 +4756,12 @@ static MDB_meta *mdb_env_pick_meta(const MDB_env *env)
     MDB_meta *const *metas = env->me_metas;
     return metas[metas[0]->mm_txnid < metas[1]->mm_txnid];
 }
-
+/**
+ * @brief 初始化一个 MDB_env struct对象
+ *
+ * @param env
+ * @return int
+ */
 int ESECT mdb_env_create(MDB_env **env)
 {
     MDB_env *e;
@@ -4866,6 +4876,7 @@ static int ESECT mdb_env_map(MDB_env *env, void *addr)
             return ErrCode();
     }
     env->me_map = mmap(addr, env->me_mapsize, prot, MAP_SHARED, env->me_fd, 0);
+
     if (env->me_map == MAP_FAILED)
     {
         env->me_map = NULL;
@@ -4893,7 +4904,7 @@ static int ESECT mdb_env_map(MDB_env *env, void *addr)
     if (addr && env->me_map != addr)
         return EBUSY; /* TODO: Make a new MDB_* error code? */
 #endif
-
+    // TODO: need pread
     p = (MDB_page *)env->me_map;
     env->me_metas[0] = METADATA(p);
     env->me_metas[1] = (MDB_meta *)((char *)env->me_metas[0] + env->me_psize);
@@ -5218,6 +5229,7 @@ static int ESECT mdb_env_open2(MDB_env *env, int prev)
     }
 #endif /* _WIN32 */
 
+// 无需做任何修改
 #ifdef BROKEN_FDATASYNC
     /* ext3/ext4 fdatasync is broken on some older Linux kernels.
      * https://lkml.org/lkml/2012/9/3/83
@@ -5954,11 +5966,14 @@ fail:
 #error "Persistent DB flags & env flags overlap, but both go in mm_flags"
 #endif
 
+// FIXME: 不会 read&write data.mdb 文件
 int ESECT mdb_env_open(MDB_env *env, const char *path, unsigned int flags, mdb_mode_t mode)
 {
+    
+    PRINTF_STDIO("open env\n");
+
     int rc, excl = -1;
     MDB_name fname;
-
     // 如果 env 已经被初始化了，则返回错误
     if (env->me_fd != INVALID_HANDLE_VALUE || (flags & ~(CHANGEABLE | CHANGELESS)))
         return EINVAL;
@@ -6012,7 +6027,6 @@ int ESECT mdb_env_open(MDB_env *env, const char *path, unsigned int flags, mdb_m
               (env->me_dirty_list = calloc(MDB_IDL_UM_SIZE, sizeof(MDB_ID2)))))
             rc = ENOMEM;
     }
-
     env->me_flags = flags; // 修改 env 的相关配置
     if (rc)
         goto leave;
@@ -6055,14 +6069,14 @@ int ESECT mdb_env_open(MDB_env *env, const char *path, unsigned int flags, mdb_m
     }
     /* 打开文件 data.mdb */
     rc =
-        mdb_fopen(env, &fname, (flags & MDB_RDONLY) ? MDB_O_RDONLY : MDB_O_RDWR, mode, &env->me_fd);
+        mdb_fopen(env, &fname, (flags & MDB_RDONLY) ? MDB_O_RDONLY : MDB_O_RDWR, mode, &env->me_fd); // FIXME: 打开 data.mdb 文件
     if (rc)
         goto leave;
 
     // 如果本 env 是 RO 但不是 lock free 的
     if ((flags & (MDB_RDONLY | MDB_NOLOCK)) == MDB_RDONLY)
     {
-        rc = mdb_env_setup_locks(env, &fname, mode, &excl);
+        rc = mdb_env_setup_locks(env, &fname, mode, &excl); // FIXME: read&write lock.mdb 文件
         if (rc)
             goto leave;
     }
@@ -6970,7 +6984,7 @@ done:
  * 一般被 mdb_page_search 和 mdb_page_search_lowest两个函数在最后调用，
  * 其中 mdb_page_search 确保 mc 在当前 DB 的 root page 上
  *
- * 移动光标到 key对应的 Leaf page 上
+ * 移动光标到 key 对应的 Leaf page 上
  */
 static int mdb_page_search_root(MDB_cursor *mc, MDB_val *key, int flags)
 {
@@ -7150,7 +7164,6 @@ static int mdb_page_search(MDB_cursor *mc, MDB_val *key, int flags)
             return MDB_NOTFOUND;
         }
     }
-
     mdb_cassert(mc, root > 1);
     // 由于当前 mc 指向的 DB 可能在之前被更新过，而其 mc 中的 mc_pg
     // 却没有被同步更新，所以需要在此更新一下
@@ -12048,6 +12061,7 @@ int mdb_dbi_open(MDB_txn *txn, const char *name, unsigned int flags, MDB_dbi *db
     if (flags & ~VALID_FLAGS)
         return EINVAL;
     // 如果此事务已经被blocked，则不允许打开新的db
+    IN_DATAMDB(&txn->mt_flags);
     if (txn->mt_flags & MDB_TXN_BLOCKED)
         return MDB_BAD_TXN;
 

@@ -21,7 +21,7 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
-			"path" : "/usr/local/share/cmake-3.24/Modules/CMakeNinjaFindMake.cmake"
+			"path" : "/usr/local/share/cmake-3.24/Modules/CMakeUnixFindMake.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -261,7 +261,7 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
-			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/Clang-FindBinUtils.cmake"
+			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/GNU-FindBinUtils.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -500,7 +500,7 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
-			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/Clang-FindBinUtils.cmake"
+			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/GNU-FindBinUtils.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -549,17 +549,7 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
-			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/Clang-C.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/Clang.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/GNU-C.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -570,11 +560,6 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/usr/local/share/cmake-3.24/Modules/Platform/Linux-Clang-C.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -663,17 +648,12 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
-			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/Clang-CXX.cmake"
+			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake"
 		},
 		{
 			"isCMake" : true,
 			"isExternal" : true,
-			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/Clang.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/usr/local/share/cmake-3.24/Modules/Platform/Linux-Clang-CXX.cmake"
+			"path" : "/usr/local/share/cmake-3.24/Modules/Compiler/GNU.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -756,8 +736,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/home/spdk/p4510/zhengyang/data/lmdb/build",
-		"source" : "/home/spdk/p4510/zhengyang/data/lmdb"
+		"build" : "/home/spdk/p4510/zhengyang/data/lmdb_test/build",
+		"source" : "/home/spdk/p4510/zhengyang/data/lmdb_test"
 	},
 	"version" : 
 	{

@@ -57,10 +57,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/spdk/p4510/zhengyang/data/lmdb
+CMAKE_SOURCE_DIR = /home/spdk/p4510/zhengyang/data/lmdb_test
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/spdk/p4510/zhengyang/data/lmdb/build
+CMAKE_BINARY_DIR = /home/spdk/p4510/zhengyang/data/lmdb_test/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/spdk/p4510/zhengyang/data/lmdb/build/CMakeFiles /home/spdk/p4510/zhengyang/data/lmdb/build/src//CMakeFiles/progress.marks
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/spdk/p4510/zhengyang/data/lmdb/build/CMakeFiles 0
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/spdk/p4510/zhengyang/data/lmdb_test/build/CMakeFiles /home/spdk/p4510/zhengyang/data/lmdb_test/build/src//CMakeFiles/progress.marks
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/spdk/p4510/zhengyang/data/lmdb_test/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/lmdb.dir/rule:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/lmdb.dir/rule
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/lmdb.dir/rule
 .PHONY : src/CMakeFiles/lmdb.dir/rule
 
 # Convenience name for target.
@@ -127,15 +127,63 @@ lmdb: src/CMakeFiles/lmdb.dir/rule
 
 # fast build rule for target.
 lmdb/fast:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/build
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/build
 .PHONY : lmdb/fast
+
+cache_yz.o: cache_yz.cpp.o
+.PHONY : cache_yz.o
+
+# target to build an object file
+cache_yz.cpp.o:
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/cache_yz.cpp.o
+.PHONY : cache_yz.cpp.o
+
+cache_yz.i: cache_yz.cpp.i
+.PHONY : cache_yz.i
+
+# target to preprocess a source file
+cache_yz.cpp.i:
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/cache_yz.cpp.i
+.PHONY : cache_yz.cpp.i
+
+cache_yz.s: cache_yz.cpp.s
+.PHONY : cache_yz.s
+
+# target to generate assembly for a file
+cache_yz.cpp.s:
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/cache_yz.cpp.s
+.PHONY : cache_yz.cpp.s
+
+logger.o: logger.c.o
+.PHONY : logger.o
+
+# target to build an object file
+logger.c.o:
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/logger.c.o
+.PHONY : logger.c.o
+
+logger.i: logger.c.i
+.PHONY : logger.i
+
+# target to preprocess a source file
+logger.c.i:
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/logger.c.i
+.PHONY : logger.c.i
+
+logger.s: logger.c.s
+.PHONY : logger.s
+
+# target to generate assembly for a file
+logger.c.s:
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/logger.c.s
+.PHONY : logger.c.s
 
 mdb.o: mdb.c.o
 .PHONY : mdb.o
 
 # target to build an object file
 mdb.c.o:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/mdb.c.o
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/mdb.c.o
 .PHONY : mdb.c.o
 
 mdb.i: mdb.c.i
@@ -143,7 +191,7 @@ mdb.i: mdb.c.i
 
 # target to preprocess a source file
 mdb.c.i:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/mdb.c.i
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/mdb.c.i
 .PHONY : mdb.c.i
 
 mdb.s: mdb.c.s
@@ -151,7 +199,7 @@ mdb.s: mdb.c.s
 
 # target to generate assembly for a file
 mdb.c.s:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/mdb.c.s
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/mdb.c.s
 .PHONY : mdb.c.s
 
 midl.o: midl.c.o
@@ -159,7 +207,7 @@ midl.o: midl.c.o
 
 # target to build an object file
 midl.c.o:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/midl.c.o
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/midl.c.o
 .PHONY : midl.c.o
 
 midl.i: midl.c.i
@@ -167,7 +215,7 @@ midl.i: midl.c.i
 
 # target to preprocess a source file
 midl.c.i:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/midl.c.i
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/midl.c.i
 .PHONY : midl.c.i
 
 midl.s: midl.c.s
@@ -175,7 +223,7 @@ midl.s: midl.c.s
 
 # target to generate assembly for a file
 midl.c.s:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/midl.c.s
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lmdb.dir/build.make src/CMakeFiles/lmdb.dir/midl.c.s
 .PHONY : midl.c.s
 
 # Help Target
@@ -187,6 +235,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... lmdb"
+	@echo "... cache_yz.o"
+	@echo "... cache_yz.i"
+	@echo "... cache_yz.s"
+	@echo "... logger.o"
+	@echo "... logger.i"
+	@echo "... logger.s"
 	@echo "... mdb.o"
 	@echo "... mdb.i"
 	@echo "... mdb.s"
@@ -204,6 +258,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

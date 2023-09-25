@@ -1,9 +1,12 @@
 cmake_minimum_required (VERSION 3.5)
-set(CMAKE_C_COMPILER "/usr/bin/clang")
-set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
-set(CMAKE_C_FLAGS "-fxray-instrument")
+set(CMAKE_C_COMPILER "/usr/bin/gcc")
+set(CMAKE_CXX_COMPILER "/usr/bin/g++")
+# set(CMAKE_C_FLAGS "-fxray-instrument")
+set(CMAKE_C_FLAGS "-g")
+# file(GLOB SRC_FILE *.c) # 建立变量SRC_FILE为目录下.c文件列表
 
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(CMAKE_BUILD_TYPE "Debug")
+# set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -lpthread -O0")
 set(CUDA_TOOLKIT_ROOT_DIR /usr/local/cuda)
  

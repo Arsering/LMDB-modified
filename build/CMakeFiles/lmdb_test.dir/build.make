@@ -53,10 +53,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/spdk/p4510/zhengyang/data/lmdb
+CMAKE_SOURCE_DIR = /home/spdk/p4510/zhengyang/data/lmdb_test
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/spdk/p4510/zhengyang/data/lmdb/build
+CMAKE_BINARY_DIR = /home/spdk/p4510/zhengyang/data/lmdb_test/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/lmdb_test.dir/depend.make
@@ -69,36 +69,36 @@ include CMakeFiles/lmdb_test.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/lmdb_test.dir/flags.make
 
-CMakeFiles/lmdb_test.dir/main.c.o: CMakeFiles/lmdb_test.dir/flags.make
-CMakeFiles/lmdb_test.dir/main.c.o: /home/spdk/p4510/zhengyang/data/lmdb/main.c
-CMakeFiles/lmdb_test.dir/main.c.o: CMakeFiles/lmdb_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/spdk/p4510/zhengyang/data/lmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/lmdb_test.dir/main.c.o"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/lmdb_test.dir/main.c.o -MF CMakeFiles/lmdb_test.dir/main.c.o.d -o CMakeFiles/lmdb_test.dir/main.c.o -c /home/spdk/p4510/zhengyang/data/lmdb/main.c
+CMakeFiles/lmdb_test.dir/main.cpp.o: CMakeFiles/lmdb_test.dir/flags.make
+CMakeFiles/lmdb_test.dir/main.cpp.o: /home/spdk/p4510/zhengyang/data/lmdb_test/main.cpp
+CMakeFiles/lmdb_test.dir/main.cpp.o: CMakeFiles/lmdb_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/spdk/p4510/zhengyang/data/lmdb_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lmdb_test.dir/main.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lmdb_test.dir/main.cpp.o -MF CMakeFiles/lmdb_test.dir/main.cpp.o.d -o CMakeFiles/lmdb_test.dir/main.cpp.o -c /home/spdk/p4510/zhengyang/data/lmdb_test/main.cpp
 
-CMakeFiles/lmdb_test.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lmdb_test.dir/main.c.i"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/spdk/p4510/zhengyang/data/lmdb/main.c > CMakeFiles/lmdb_test.dir/main.c.i
+CMakeFiles/lmdb_test.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lmdb_test.dir/main.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/spdk/p4510/zhengyang/data/lmdb_test/main.cpp > CMakeFiles/lmdb_test.dir/main.cpp.i
 
-CMakeFiles/lmdb_test.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lmdb_test.dir/main.c.s"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/spdk/p4510/zhengyang/data/lmdb/main.c -o CMakeFiles/lmdb_test.dir/main.c.s
+CMakeFiles/lmdb_test.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lmdb_test.dir/main.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/spdk/p4510/zhengyang/data/lmdb_test/main.cpp -o CMakeFiles/lmdb_test.dir/main.cpp.s
 
 # Object files for target lmdb_test
 lmdb_test_OBJECTS = \
-"CMakeFiles/lmdb_test.dir/main.c.o"
+"CMakeFiles/lmdb_test.dir/main.cpp.o"
 
 # External object files for target lmdb_test
 lmdb_test_EXTERNAL_OBJECTS =
 
-/home/spdk/p4510/zhengyang/data/lmdb/bin/lmdb_test: CMakeFiles/lmdb_test.dir/main.c.o
-/home/spdk/p4510/zhengyang/data/lmdb/bin/lmdb_test: CMakeFiles/lmdb_test.dir/build.make
-/home/spdk/p4510/zhengyang/data/lmdb/bin/lmdb_test: /home/spdk/p4510/zhengyang/data/lmdb/lib/liblmdb.a
-/home/spdk/p4510/zhengyang/data/lmdb/bin/lmdb_test: CMakeFiles/lmdb_test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/spdk/p4510/zhengyang/data/lmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable /home/spdk/p4510/zhengyang/data/lmdb/bin/lmdb_test"
+/home/spdk/p4510/zhengyang/data/lmdb_test/bin/lmdb_test: CMakeFiles/lmdb_test.dir/main.cpp.o
+/home/spdk/p4510/zhengyang/data/lmdb_test/bin/lmdb_test: CMakeFiles/lmdb_test.dir/build.make
+/home/spdk/p4510/zhengyang/data/lmdb_test/bin/lmdb_test: /home/spdk/p4510/zhengyang/data/lmdb_test/lib/liblmdb.a
+/home/spdk/p4510/zhengyang/data/lmdb_test/bin/lmdb_test: CMakeFiles/lmdb_test.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/spdk/p4510/zhengyang/data/lmdb_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/spdk/p4510/zhengyang/data/lmdb_test/bin/lmdb_test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lmdb_test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/lmdb_test.dir/build: /home/spdk/p4510/zhengyang/data/lmdb/bin/lmdb_test
+CMakeFiles/lmdb_test.dir/build: /home/spdk/p4510/zhengyang/data/lmdb_test/bin/lmdb_test
 .PHONY : CMakeFiles/lmdb_test.dir/build
 
 CMakeFiles/lmdb_test.dir/clean:
@@ -106,6 +106,6 @@ CMakeFiles/lmdb_test.dir/clean:
 .PHONY : CMakeFiles/lmdb_test.dir/clean
 
 CMakeFiles/lmdb_test.dir/depend:
-	cd /home/spdk/p4510/zhengyang/data/lmdb/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/spdk/p4510/zhengyang/data/lmdb /home/spdk/p4510/zhengyang/data/lmdb /home/spdk/p4510/zhengyang/data/lmdb/build /home/spdk/p4510/zhengyang/data/lmdb/build /home/spdk/p4510/zhengyang/data/lmdb/build/CMakeFiles/lmdb_test.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/spdk/p4510/zhengyang/data/lmdb_test/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/spdk/p4510/zhengyang/data/lmdb_test /home/spdk/p4510/zhengyang/data/lmdb_test /home/spdk/p4510/zhengyang/data/lmdb_test/build /home/spdk/p4510/zhengyang/data/lmdb_test/build /home/spdk/p4510/zhengyang/data/lmdb_test/build/CMakeFiles/lmdb_test.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/lmdb_test.dir/depend
 

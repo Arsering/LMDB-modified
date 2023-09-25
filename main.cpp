@@ -1,5 +1,9 @@
 #include <stdio.h>
+
+#include "logger.h"
 #include "lmdb.h"
+#include "boost/filesystem.hpp"
+extern MDB_env *env_for_log;
 
 int add_data(MDB_env *env)
 {
@@ -43,13 +47,13 @@ int get_data(MDB_env *env)
     rc = mdb_cursor_open(txn, dbi, &cursor);
     while ((rc = mdb_cursor_get(cursor, &key, &data, MDB_NEXT)) == 0)
     {
-        printf("get: key = %.*s, data = %.*s\n", (int)key.mv_size, (char *)key.mv_data, (int)data.mv_size, (char *)data.mv_data);
+        PRINTF_STDIO("get: key = %.*s, data = %.*s\n", (int)key.mv_size, (char *)key.mv_data, (int)data.mv_size, (char *)data.mv_data);
     }
     mdb_cursor_close(cursor);
     mdb_txn_abort(txn);
 }
 
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     int rc;
     MDB_env *env;
@@ -61,18 +65,21 @@ void main(int argc, char *argv[])
 
     rc = mdb_env_create(&env);
     unsigned int flags = 0664 | MDB_DUPSORT;
-    rc = mdb_env_open(env, "../testdb", 0, flags);
+    rc = mdb_env_open(env, "testdb", 0, flags);
 
-    rc = add_data(env);
-    if (rc)
-    {
-        fprintf(stderr, "mdb_txn_commit: (%d) %s\n", rc, mdb_strerror(rc));
-        goto leave;
-    }
+    env_cur = env;
+
+    // rc = add_data(env);
+    // if (rc)
+    // {
+    //     fprintf(stderr, "mdb_txn_commit: (%d) %s\n", rc, mdb_strerror(rc));
+    //     goto leave;
+    // }
 
     rc = get_data(env);
 
 leave:
     mdb_close(env, dbi);
     mdb_env_close(env);
+    return 0;
 }

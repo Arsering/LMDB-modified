@@ -1,3 +1,9 @@
-cd bin
 
-./lmdb_test
+cd build
+
+rm -rf ./*
+cmake ..
+make
+
+cd ..
+./bin/lmdb_test

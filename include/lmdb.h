@@ -520,6 +520,7 @@ typedef int mdb_filehandle_t;
 		unsigned int me_numreaders; /**< max reader slots used in the environment */
 	} MDB_envinfo;
 
+	MDB_env *env_cur;
 	/** @brief Return the LMDB library version information.
 	 *
 	 * @param[out] major if non-NULL, the library major version number is copied here
